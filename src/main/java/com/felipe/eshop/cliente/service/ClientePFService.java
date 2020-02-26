@@ -30,8 +30,9 @@ public class ClientePFService {
     }
 
     public ClientePF save(NovoClienteDTO novoCliente) {
+
         Cidade cidade = cidadeService.findByNome(novoCliente.getCidade());
-        Telefone telefone = new Telefone(novoCliente.getTelefone());
+
         Endereco endereco = new Endereco(
                 novoCliente.getLogradouro(),
                 novoCliente.getNumero(),
@@ -41,6 +42,8 @@ public class ClientePFService {
                 cidade);
 
         enderecoRepository.save(endereco);
+
+        Telefone telefone = new Telefone(novoCliente.getTelefone());
         telefoneRepository.save(telefone);
 
         ClientePF cliente = new ClientePF(
