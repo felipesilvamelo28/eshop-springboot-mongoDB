@@ -4,13 +4,11 @@ import com.felipe.eshop.cliente.entity.ClientePF;
 import com.felipe.eshop.cliente.entity.Endereco;
 import com.felipe.eshop.cliente.entity.Telefone;
 import com.felipe.eshop.cliente.entity.dto.ClienteDadosPessoaisDTO;
+import com.felipe.eshop.cliente.entity.dto.NovoClienteDTO;
 import com.felipe.eshop.cliente.repository.ClientePFRepository;
 import com.felipe.eshop.cliente.service.ClientePFService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,6 +47,11 @@ public class ClientePFController {
     public ClienteDadosPessoaisDTO dadosPessoais(@PathVariable String id){
         ClientePF clientePF = clientePFService.findById(id);
         return new ClienteDadosPessoaisDTO(clientePF);
+    }
+
+    @PostMapping
+    public ClientePF novoCliente(@RequestBody NovoClienteDTO novoCliente){
+        return clientePFService.save(novoCliente);
     }
 
 }

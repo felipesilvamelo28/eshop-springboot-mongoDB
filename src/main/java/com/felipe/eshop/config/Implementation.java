@@ -73,7 +73,7 @@ public class Implementation implements CommandLineRunner {
         Estado estado2 = new Estado("Sao Paulo");
         estadoRepository.save(estado2);
 
-        Cidade cidade2 = new Cidade("São Caetano", estado2);
+        Cidade cidade2 = new Cidade("Santos", estado2);
         cidadeRepository.save(cidade2);
 
         Endereco endereco2 = new Endereco("Rua tal e tal"
