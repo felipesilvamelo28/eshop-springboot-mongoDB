@@ -1,7 +1,7 @@
-package com.felipe.eshop.config;
+package com.felipe.eshop.cliente.config;
 
-import com.felipe.eshop.entity.*;
-import com.felipe.eshop.repository.*;
+import com.felipe.eshop.cliente.entity.*;
+import com.felipe.eshop.cliente.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;

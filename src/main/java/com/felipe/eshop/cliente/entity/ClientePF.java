@@ -1,4 +1,4 @@
-package com.felipe.eshop.entity;
+package com.felipe.eshop.cliente.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

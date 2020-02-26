@@ -1,7 +1,6 @@
-package com.felipe.eshop.repository;
+package com.felipe.eshop.cliente.repository;
 
-import com.felipe.eshop.entity.Endereco;
-import com.felipe.eshop.entity.Estado;
+import com.felipe.eshop.cliente.entity.Estado;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

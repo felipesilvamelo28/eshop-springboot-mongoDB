@@ -1,9 +1,10 @@
-package com.felipe.eshop.controller;
+package com.felipe.eshop.cliente.controller;
 
-import com.felipe.eshop.entity.ClientePF;
-import com.felipe.eshop.entity.Endereco;
-import com.felipe.eshop.repository.ClientePFRepository;
-import com.felipe.eshop.service.ClientePFService;
+import com.felipe.eshop.cliente.entity.ClientePF;
+import com.felipe.eshop.cliente.entity.Endereco;
+import com.felipe.eshop.cliente.entity.Telefone;
+import com.felipe.eshop.cliente.repository.ClientePFRepository;
+import com.felipe.eshop.cliente.service.ClientePFService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +33,15 @@ public class ClientePFController {
     }
 
     @GetMapping(value = "/{id}/enderecos")
-    public List<Endereco> listaEnderecoCliente(@PathVariable String id){
+    public List<Endereco> listaEnderecosCliente(@PathVariable String id){
         ClientePF clientePF = clientePFService.findById(id);
         return clientePF.getEnderecos();
+    }
+
+    @GetMapping(value = "/{id}/telefones")
+    public List<Telefone> listaTelefonesCliente(@PathVariable String id){
+        ClientePF clientePF = clientePFService.findById(id);
+        return clientePF.getTelefones();
     }
 
 }
