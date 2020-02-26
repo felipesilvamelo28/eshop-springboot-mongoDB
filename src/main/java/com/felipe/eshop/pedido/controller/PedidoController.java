@@ -1,10 +1,9 @@
 package com.felipe.eshop.pedido.controller;
 
-import com.felipe.eshop.categoria.entity.Produto;
 import com.felipe.eshop.pedido.dto.ClientePFDTOPedido;
 import com.felipe.eshop.pedido.entity.ItemPedido;
 import com.felipe.eshop.pedido.entity.Pedido;
-import com.felipe.eshop.pedido.repository.PedidoRepository;
+
 import com.felipe.eshop.pedido.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +41,5 @@ public class PedidoController {
         Pedido pedido = pedidoService.findById(id);
         return pedido.getClientePF();
     }
-
 
 }
