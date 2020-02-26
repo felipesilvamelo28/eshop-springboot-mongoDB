@@ -3,6 +3,7 @@ package com.felipe.eshop.cliente.controller;
 import com.felipe.eshop.cliente.entity.ClientePF;
 import com.felipe.eshop.cliente.entity.Endereco;
 import com.felipe.eshop.cliente.entity.Telefone;
+import com.felipe.eshop.cliente.entity.dto.ClienteDadosPessoaisDTO;
 import com.felipe.eshop.cliente.repository.ClientePFRepository;
 import com.felipe.eshop.cliente.service.ClientePFService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,12 @@ public class ClientePFController {
     public List<Telefone> listaTelefonesCliente(@PathVariable String id){
         ClientePF clientePF = clientePFService.findById(id);
         return clientePF.getTelefones();
+    }
+
+    @GetMapping(value = "/{id}/dadospessoais")
+    public ClienteDadosPessoaisDTO dadosPessoais(@PathVariable String id){
+        ClientePF clientePF = clientePFService.findById(id);
+        return new ClienteDadosPessoaisDTO(clientePF);
     }
 
 }
