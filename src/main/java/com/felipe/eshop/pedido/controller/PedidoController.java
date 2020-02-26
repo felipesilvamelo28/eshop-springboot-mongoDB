@@ -1,5 +1,8 @@
 package com.felipe.eshop.pedido.controller;
 
+import com.felipe.eshop.categoria.entity.Produto;
+import com.felipe.eshop.pedido.dto.ClientePFDTOPedido;
+import com.felipe.eshop.pedido.entity.ItemPedido;
 import com.felipe.eshop.pedido.entity.Pedido;
 import com.felipe.eshop.pedido.repository.PedidoRepository;
 import com.felipe.eshop.pedido.service.PedidoService;
@@ -27,5 +30,18 @@ public class PedidoController {
     public Pedido listarPedidoById(@PathVariable String id){
         return pedidoService.findById(id);
     }
+
+    @GetMapping(value = "/{id}/itens")
+    public List<ItemPedido> listarItens(@PathVariable String id){
+        Pedido pedido = pedidoService.findById(id);
+        return pedido.getItens();
+    }
+
+    @GetMapping(value = "/{id}/dadoscliente")
+    public ClientePFDTOPedido dadosCliente(@PathVariable String id){
+        Pedido pedido = pedidoService.findById(id);
+        return pedido.getClientePF();
+    }
+
 
 }
