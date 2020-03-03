@@ -54,4 +54,9 @@ public class ClientePFController {
         return clientePFService.save(novoCliente);
     }
 
+    @GetMapping(value = "/text")
+    public String listaClientesPFText(){
+        return clientePFService.converterParaString();
+    }
+
 }

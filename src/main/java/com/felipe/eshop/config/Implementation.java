@@ -98,6 +98,24 @@ public class Implementation implements CommandLineRunner {
 
         clientePFRepository.save(clientePF1);
 
+        ClientePF clientePF2 = new ClientePF("Felipe Melo2"
+                , "felipe@email.com"
+                , "078273"
+                , Arrays.asList(endereco1)
+                , Arrays.asList(telefone1, telefone2));
+
+        clientePFRepository.save(clientePF1);
+
+        ClientePF clientePF3 = new ClientePF("Felipe Melo3"
+                , "felipe@email.com"
+                , "078273"
+                , Arrays.asList(endereco2)
+                , Arrays.asList(telefone1, telefone2));
+
+        clientePFRepository.save(clientePF1);
+        clientePFRepository.save(clientePF2);
+        clientePFRepository.save(clientePF3);
+
         //IMPLEMENTAÇÃO DA CATEGORIA:
 
         Produto produto1 = new Produto("Computador", 2000.0);

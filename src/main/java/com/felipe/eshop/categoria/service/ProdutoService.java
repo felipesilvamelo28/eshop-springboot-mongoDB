@@ -22,8 +22,8 @@ public class ProdutoService {
     }
 
     public Produto save(Produto produto){
-       // produto.setId(null);
-        return produtoRepository.save(produto);
+       //produto.setId(null);
+       return produtoRepository.save(produto);
     }
 
     public void delete(String id){

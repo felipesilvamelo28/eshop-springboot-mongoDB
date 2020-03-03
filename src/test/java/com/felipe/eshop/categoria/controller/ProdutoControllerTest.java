@@ -3,7 +3,6 @@ package com.felipe.eshop.categoria.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.felipe.eshop.categoria.entity.Produto;
 import com.felipe.eshop.categoria.service.ProdutoService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -41,8 +40,6 @@ public class ProdutoControllerTest {
         produto.setPreco(250.5);
         return produto;
     }
-
-    Produto produto2 = criaProduto2();
 
     @Autowired
     MockMvc mockMvc;
