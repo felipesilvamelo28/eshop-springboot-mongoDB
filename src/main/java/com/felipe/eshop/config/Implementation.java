@@ -92,7 +92,7 @@ public class Implementation implements CommandLineRunner {
 
         ClientePF clientePF1 = new ClientePF("Felipe Melo"
                 , "felipe@email.com"
-                , "078273"
+                , "07827392969"
                 , Arrays.asList(endereco1, endereco2)
                 , Arrays.asList(telefone1, telefone2));
 
@@ -100,7 +100,7 @@ public class Implementation implements CommandLineRunner {
 
         ClientePF clientePF2 = new ClientePF("Felipe Melo2"
                 , "felipe@email.com"
-                , "078273"
+                , "07827392969"
                 , Arrays.asList(endereco1)
                 , Arrays.asList(telefone1, telefone2));
 
@@ -108,7 +108,7 @@ public class Implementation implements CommandLineRunner {
 
         ClientePF clientePF3 = new ClientePF("Felipe Melo3"
                 , "felipe@email.com"
-                , "078273"
+                , "07827392969"
                 , Arrays.asList(endereco2)
                 , Arrays.asList(telefone1, telefone2));
 

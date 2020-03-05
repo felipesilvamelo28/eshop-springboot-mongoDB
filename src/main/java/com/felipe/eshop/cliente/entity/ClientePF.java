@@ -3,11 +3,12 @@ package com.felipe.eshop.cliente.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @Document
-public class ClientePF {
+public class ClientePF implements Serializable {
     @Id
     private String id;
     private String nome;

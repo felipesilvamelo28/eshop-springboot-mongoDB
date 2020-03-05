@@ -6,10 +6,13 @@ import com.felipe.eshop.cliente.entity.Telefone;
 import com.felipe.eshop.cliente.entity.dto.ClienteDadosPessoaisDTO;
 import com.felipe.eshop.cliente.entity.dto.NovoClienteDTO;
 import com.felipe.eshop.cliente.repository.ClientePFRepository;
+import com.felipe.eshop.cliente.service.ArquivoService;
 import com.felipe.eshop.cliente.service.ClientePFService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -20,13 +23,15 @@ public class ClientePFController {
     ClientePFRepository clientePFRepository;
     @Autowired
     ClientePFService clientePFService;
+    @Autowired
+    ArquivoService arquivoService;
 
     @GetMapping
     public List<ClientePF> listaClientesPF(){
         return clientePFRepository.findAll();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public ClientePF listaClientesPFById(@PathVariable String id){
         return clientePFService.findById(id);
     }
@@ -55,8 +60,12 @@ public class ClientePFController {
     }
 
     @GetMapping(value = "/text")
-    public String listaClientesPFText(){
+    public String listaClientesPFText() throws IOException {
         return clientePFService.converterParaString();
+    }
+    @GetMapping(value = "/text/export")
+    public String exportaClientesPFText() throws IOException {
+        return arquivoService.guardaNoArquivo("export");
     }
 
 }

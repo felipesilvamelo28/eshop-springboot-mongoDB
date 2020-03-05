@@ -12,8 +12,12 @@ import com.felipe.eshop.cliente.repository.TelefoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -27,9 +31,11 @@ public class ClientePFService {
     CidadeService cidadeService;
     @Autowired
     TelefoneRepository telefoneRepository;
+    @Autowired
+    ArquivoService arquivoService;
 
-    public ClientePF findById(String id){
-        return repository.findById(id).orElseThrow(()-> new RuntimeException("Cliente não encontrado!"));
+    public ClientePF findById(String id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
     }
 
     public ClientePF save(NovoClienteDTO novoCliente) {
@@ -53,45 +59,34 @@ public class ClientePFService {
                 novoCliente.getNome(),
                 novoCliente.getEmail(),
                 novoCliente.getCpf(),
-                Arrays.asList(endereco),
-                Arrays.asList(telefone));
+                Collections.singletonList(endereco),
+                Collections.singletonList(telefone));
 
         return repository.save(cliente);
 
     }
 
-    public String converterParaString() {
+    public String converterParaString() throws IOException {
 
         List<ClientePF> clientes = repository.findAll();
-
-        List<String> clientesConverter = new ArrayList<>();
+        StringBuilder builder = new StringBuilder();
 
         for (ClientePF value : clientes) {
+            for (Endereco endereco: value.getEnderecos()) {
+                StringBuilder linha = new StringBuilder();
+                linha.append(value.getNome()).append("|");
+                linha.append(value.getEmail()).append("|");
+                linha.append(value.getCpf()).append("|");
 
-            String clienteStr = "";
-
-            clienteStr = clienteStr.concat(value.getNome() + "|");
-            clienteStr = clienteStr.concat(value.getEmail() + "|");
-            clienteStr = clienteStr.concat(value.getCpf() + "|");
-
-            for (int c = 0; c < value.getEnderecos().size(); c++){
-                clienteStr = clienteStr.concat(value.getEnderecos().get(c).getLogradouro() + "|");
-                clienteStr = clienteStr.concat(value.getEnderecos().get(c).getNumero() + "|");
-                clienteStr = clienteStr.concat(value.getEnderecos().get(c).getComplemento() + "|");
-                clienteStr = clienteStr.concat(value.getEnderecos().get(c).getBairro() + "|");
-                clienteStr = clienteStr.concat(value.getEnderecos().get(c).getCep() + "|");
-                clienteStr = clienteStr.concat(value.getEnderecos().get(c).getCidade().getNome() + "|");
+                linha.append(endereco.getLogradouro()).append("|");
+                linha.append(endereco.getNumero()).append("|");
+                linha.append(endereco.getComplemento()).append("|");
+                linha.append(endereco.getBairro()).append("|");
+                linha.append(endereco.getCep()).append("|");
+                linha.append(endereco.getCidade().getNome());
+                builder.append(linha).append("\n");
             }
-
-            clientesConverter.add(clienteStr);
         }
-
-        String clientesConverterStr = "";
-
-        for(int c = 0; c < clientesConverter.size(); c++){
-            clientesConverterStr = clientesConverterStr.concat(clientesConverter.get(c) + "\n");
-        }
-
-        return clientesConverterStr;
+        return builder.toString();
     }
 }
